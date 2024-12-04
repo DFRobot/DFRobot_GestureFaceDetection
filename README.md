@@ -5,7 +5,7 @@
 GestureFaceDetection is a sensor capable of tracking human head and shoulders and detecting five types of gestures from up to 3 meters away.
    
    
-![正反面svg效果图](https://github.com/DFRobot/DFRobot_GestureFaceDetection/raw/master/resources/images/SEN00626svg.png)
+![正反面svg效果图](https://github.com/DFRobot/DFRobot_GestureFaceDetection/raw/master/resources/images/SEN0626svg.png)
 
 ## Product Link（https://www.dfrobot.com/)
     SEN0626:Gesture Sensor 
