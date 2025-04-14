@@ -1,7 +1,8 @@
 /*!
- *@file detectGesture.ino
- *@brief Detect gestures
- *@details  This code detects the location, score of faces, and gestures along with their scores.
+ *@file configUart.ino
+ *@brief Configure sensor parameters
+ *@details  This code configures the sensor's address and serial communication parameters.
+ *@details  The configuration needs to be powered off to take effect.
  *@copyright   Copyright (c) 2025 DFRobot Co.Ltd (http://www.dfrobot.com)
  *@license     The MIT license (MIT)
  *@author [thdyyl](yuanlong.yu@dfrobot.com)
@@ -15,6 +16,7 @@
 // Define the device ID for the GestureFaceDetection sensor
 #define DEVICE_ID 0x72
 #define DEVICE_BAUD 9600
+
 /* ---------------------------------------------------------------------------------------------------------------------
   *    board   |             MCU                | Leonardo/Mega2560/M0 |    UNO    | ESP8266 | ESP32 |  microbit  |   m0  |
   *     VCC    |            3.3V/5V             |        VCC           |    VCC    |   VCC   |  VCC  |     X      |  vcc  |
@@ -31,8 +33,6 @@ DFRobot_GestureFaceDetection_UART gfd(&mySerial1, DEVICE_ID);
 // Create an instance of DFRobot_GestureFaceDetection_UART with the specified device ID and Serial1 for UART communicatio
 DFRobot_GestureFaceDetection_UART gfd(&Serial1, DEVICE_ID);
 #endif
-// Buffer for formatted output
-char str[100];
 
 
 void setup() {
@@ -54,43 +54,23 @@ void setup() {
     Serial.println("Communication with device failed, please check connection");
     delay(1000);
   }
-  Serial.print("face detection threshold: ");
-  Serial.println(gfd.getFaceDetectThres());
-
-  Serial.print("gesture detection threshold: ");
-  Serial.println(gfd.getGestureDetectThres());
-
-  Serial.print("gesture detection range: ");
-  Serial.println(gfd.getDetectThres());
+  // Configure the UART settings of the sensor
+  uint16_t ret = gfd.configUart(eBaud_115200, UART_CFG_PARITY_NONE, UART_CFG_STOP_BITS_1);
+  if (ret == SUCCESS) {
+    Serial.println("Configure the UART settings of the sensor success.");
+  } else {
+    Serial.print("Configure the UART settings of the sensor fail. Error code: 0x");
+    Serial.println(ret, HEX);
+  }
+  // Set the device address of the sensor
+  if (gfd.setDeviceAddr(0x72)) {
+    Serial.println("Successfully configured the device address for the sensor.");
+  } else {
+    Serial.println("Failed to configure the device address for the sensor.");
+  }
 }
 
+
 void loop() {
-  // Check if any faces are detected
-  if (gfd.getFaceNumber() > 0) {
-
-    // Retrieve face score and location
-    uint16_t faceScore = gfd.getFaceScore();
-    uint16_t faceX = gfd.getFaceLocationX();
-    uint16_t faceY = gfd.getFaceLocationY();
-
-    // Print the face detection results
-    sprintf(str, "detect face at (x = %d, y = %d, score = %d)\n", faceX, faceY, faceScore);
-    Serial.print(str);
-
-    // Print the gesture detection results
-    // - 1: LIKE (👍) - blue
-    // - 2: OK (👌) - green
-    // - 3: STOP (🤚) - red
-    // - 4: YES (✌) - yellow
-    // - 5: SIX (🤙) - purple
-    uint16_t gestureType = gfd.getGestureType();
-    uint16_t gestureScore = gfd.getGestureScore();
-
-    // Print the gesture detection results
-    sprintf(str, "detect gesture %d, score = %d\n", gestureType, gestureScore);
-    Serial.print(str);
-  }
-
-  // Delay before the next loop iteration
-  delay(500);
+  delay(1000);
 }

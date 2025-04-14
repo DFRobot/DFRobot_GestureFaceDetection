@@ -4,7 +4,7 @@
   @file DFRobot_RTU.py
   @brief Modbus RTU libary for Arduino. 
   
-  @copyright   Copyright (c) 2024 DFRobot Co.Ltd (http://www.dfrobot.com)
+  @copyright   Copyright (c) 2025 DFRobot Co.Ltd (http://www.dfrobot.com)
   @licence     The MIT License (MIT)
   @author [Arya](xue.peng@dfrobot.com)
   @version  V1.0

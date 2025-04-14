@@ -4,9 +4,9 @@
 
 GestureFaceDetection是一款可以在最远3米距离跟踪人体头肩和检测五种手势的传感器
 
-![正反面svg效果图](https://github.com/DFRobot/DFRobot_GestureFaceDetection/raw/master/resources/images/SEN0626svg.png)
+![正反面svg效果图](./resources/images/SEN0626svg.png)
 
-## 产品链接（https://www.dfrobot.com.cn/)
+## 产品链接（https://www.dfrobot.com/product-2914.html)
 
 SEN0626: GestureFaceDetection Sensor 手势传感器
 
@@ -62,7 +62,7 @@ SEN0626: GestureFaceDetection Sensor 手势传感器
      *              - `eBaud_1200`  - 1200波特
      *              - `eBaud_2400`  - 2400波特
      *              - `eBaud_4800`  - 4800波特
-     *              - `eBaud_9600`  - 9600波特
+     *              - `eBaud_9600`  - 9600波特 (默认值)
      *              - `eBaud_14400` - 14400波特
      *              - `eBaud_19200` - 19200波特
      *              - `eBaud_38400` - 38400波特
@@ -73,7 +73,7 @@ SEN0626: GestureFaceDetection Sensor 手势传感器
      *              - `eBaud_921600`- 921600波特
      *
      * @param parity 校验位配置，类型为`eParityConfig_t`，可能的值包括：
-     *              - `UART_CFG_PARITY_NONE`  - 无校验
+     *              - `UART_CFG_PARITY_NONE`  - 无校验 （默认值）
      *              - `UART_CFG_PARITY_ODD`   - 奇校验
      *              - `UART_CFG_PARITY_EVEN`  - 偶校验
      *              - `UART_CFG_PARITY_MARK`  - 标记校验
@@ -81,7 +81,7 @@ SEN0626: GestureFaceDetection Sensor 手势传感器
      *
      * @param stopBit 停止位配置，类型为`eStopbits_t`，可能的值包括：
      *                - `UART_CFG_STOP_BITS_0_5` - 0.5停止位
-     *                - `UART_CFG_STOP_BITS_1`   - 1停止位
+     *                - `UART_CFG_STOP_BITS_1`   - 1停止位 （默认值）
      *                - `UART_CFG_STOP_BITS_1_5` - 1.5停止位
      *                - `UART_CFG_STOP_BITS_2`   - 2停止位
      *
@@ -121,6 +121,35 @@ SEN0626: GestureFaceDetection Sensor 手势传感器
      * @return 如果成功，返回真；否则返回假。
      */
     bool setGestureDetectThres(uint16_t score);
+
+    /**
+     * @fn getFaceDetectThres
+     * @brief 该函数用于获取设备的人脸检测阈值。
+     * @details 该阈值的范围为0-100，其中0表示关闭人脸检测功能，100表示最大检测阈值。默认值为60%。
+     * 
+     * @return uint16_t 人脸检测阈值。 
+     */
+    uint16_t getFaceDetectThres();
+
+    /**
+     * @fn getDetectThres 
+     * @brief 获取X坐标的检测阈值。
+     * 
+     * 获取检测X坐标的阈值（0-100）。默认值为60%。
+     * 
+     * @return uint16_t  X坐标的检测阈值。
+     */
+    uint16_t getDetectThres();
+    
+    /**
+     * @fn getGestureDetectThres
+     * @brief   获取手势检测阈值。
+     * 
+     * 获取手势检测的阈值（0-100）。默认值为60%。
+     * 
+     * @return uint16_t 
+     */
+    uint16_t getGestureDetectThres();
     
     /**
      * @fn getFaceNumber
@@ -184,7 +213,7 @@ SEN0626: GestureFaceDetection Sensor 手势传感器
 MCU                | 表现良好	|表现异常	|未测试	|备注 |
 ------------------ | :----------: | :----------: | :---------: | -----
 Arduino Uno        |      √       |              |             | 
-FireBeetle-ESP32        |      √       |              |             | 
+FireBeetle-ESP32-E        |      √       |              |             | 
 Arduino MEGA2560        |      √       |              |             | 
 Arduino Leonardo|      √       |              |             | 
 Micro:bit        |      √       |              |             | 
@@ -193,12 +222,12 @@ Raspberry Pi      |      √       |              |             |
 
 ## 历史
 
-- Date 2024-8-1
-- Version V0.1
+- Date 2025-03-17
+- Version V1.0
 
 
 ## 贡献者
 
-Written by fengli(li.feng@dfrobot.com), 2024.8.01 (Welcome to our [website](https://www.dfrobot.com/))
+Written by thdyyl(yuanlong.yu@dfrobot.com), 2025.03.17 (Welcome to our [website](https://www.dfrobot.com/))
 
 ## History

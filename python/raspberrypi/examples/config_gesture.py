@@ -1,7 +1,7 @@
 '''
-  @file get_pid_vid.py
-  @brief Retrieve the device's PID and VID
-  @details  This code retrieves and displays the Product ID (PID) and Vendor ID (VID) of the DFRobot GestureFaceDetection sensor. It also shows how to get the number of detected faces.
+  @file config_gesture.py
+  @brief Config gestures
+  @details  This code configure the location, score of faces, and gestures along with their scores.
   @copyright   Copyright (c) 2025 DFRobot Co.Ltd (http://www.dfrobot.com)
   @license     The MIT license (MIT)
   @author [thdyyl](yuanlong.yu@dfrobot.com)
@@ -32,11 +32,11 @@ else:
     # Using UART interface
     gfd = DFRobot_GestureFaceDetection_UART(baud=UART_BAUD_RATE, addr=DEVICE_ID)
 
-def main():
+def setup():
     """
-    @brief Main function to retrieve and display PID and VID.
+    @brief Setup function for initializing sensor thresholds.
     
-    This function retrieves and prints the Product ID (PID) of the DFRobot GestureFaceDetection sensor.
+    This function sets the thresholds for face detection and gesture detection.
     """
     # Wait for the sensor to start.
     time.sleep(5)
@@ -45,11 +45,22 @@ def main():
         print("Communication with device failed, please check connection")
         time.sleep(1)
 
-    # Retrieve and print PID
-    pid = gfd.read_pid()
-    print("PID: {}".format(pid))
-    vid = gfd.read_vid()
-    print("VID: {}".format(vid))
-# Execute the main function if the script is run directly
-if __name__ == "__main__":
-    main()
+    # Set face detection score threshold (0~100)
+    if gfd.set_face_detect_thres(60):
+        print("Face detection threshold set to 60.")
+    else:
+        print("Set the face detection threshold fail.")
+    # Set gesture detection score threshold (0~100)
+    if gfd.set_gesture_detect_thres(60):
+        print("Gesture detection threshold set to 60.")
+    else:
+        print("Set the gesture detection threshold fail.")
+    # Set detection range, 0~100
+    if gfd.set_detect_thres(100):
+        print("Detection range set to maximum.")
+    else:
+        print("Set the gesture detection range fail.")
+
+
+# Execute setup function
+setup()

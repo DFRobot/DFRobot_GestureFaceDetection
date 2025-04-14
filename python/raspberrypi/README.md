@@ -6,7 +6,7 @@ GestureFaceDetection is a sensor capable of tracking human head and shoulders an
 
 ![Product Image](../../resources/images/SEN0626svg.png)
 
-## Product Link（https://www.dfrobot.com/)
+## Product Link（https://www.dfrobot.com/product-2914.html)
     SEN0626:Gesture Sensor 
 ## Table of Contents
 
@@ -23,57 +23,67 @@ Provide an Arduino library to control
 
 ## Installation
 
-Download the DFRobot_GestureFaceDetection file to the Raspberry Pi file directory, then run the following command line to use this sensor:
+To use this library, first download it to Raspberry Pi and download smbus2
 
+```
+pip install smbus2
+pip3 install smbus2
+```
 
+then open the use case folder. To execute a use case demox.py, enter python demox.py in the command line. For example, to execute the getypid_vid. py use case, you need to input:
+
+```
+python get_pid_vid.py
+```
 
 ## Methods
 ```python
   
+    def read_pid(self):
     '''
       @brief Get the device PID
       @return Returns the device PID
     '''
-    def read_pid(self):
 
+    def read_vid(self):
     '''
       @brief Get the device VID
       @return Returns the device VID
     '''
-    def read_vid(self):
 
+    def get_face_number(self):
     '''
       @brief Get the number of detected faces
       @return Returns the number of detected faces
     '''
-    def get_face_number(self):
 
+    def config_uart(self, baud, parity, stop_bit):
     '''
       @brief Configure UART
       @param baud Baud rate
       @param parity Parity bit
       @param stop_bit Stop bits
     '''
-    def config_uart(self, baud, parity, stop_bit):
 
+    def get_face_location_x(self):
     '''
       @brief Get the X location of the face
       @return Returns the X location
     '''
-    def get_face_location_x(self):
 
+    def get_face_location_y(self):
     '''
       @brief Get the Y location of the face
       @return Returns the Y location
     '''
-    def get_face_location_y(self):
 
+    def get_face_score(self):
     '''
       @brief Get the face score
       @return Returns the face score
     '''
-    def get_face_score(self):
 
+    def get_gesture_type(self):
     '''
       @brief Get the gesture type
              - 1: LIKE (👍) - blue
@@ -83,41 +93,60 @@ Download the DFRobot_GestureFaceDetection file to the Raspberry Pi file director
              - 5: SIX (🤙) - purple
       @return Returns the gesture type
     '''
-    def get_gesture_type(self):
 
+    def get_gesture_score(self):
     '''
       @brief Get the gesture score
       @return Returns the gesture score
     '''
-    def get_gesture_score(self):
 
+    def set_face_detect_thres(self, score):
     '''
       @brief Set the face detection threshold
       @n Sets the threshold for face detection (0-100). Default is 60%
       @param score Threshold score
     '''
-    def set_face_detect_thres(self, score):
 
+    def set_detect_thres(self, x):
     '''
-      @brief Set the face score threshold
+      @brief Set the x-range for face detection
       @n Sets the threshold for detecting the X coordinate (0-100). Default is 60%.
       @param x Threshold value
     '''
-    def set_detect_thres(self, x):
 
+    def set_gesture_detect_thres(self, score):
     '''
       @brief Set the gesture detection threshold
       @n Sets the threshold for gesture detection (0-100). Default is 60%.
       @param score Threshold score
     '''
-    def set_gesture_detect_thres(self, score):
 
+    def get_face_detect_thres(self):
+    '''
+      @brief Get the face detection threshold
+      @n Get the threshold for face detection (0-100). Default is 60%
+      @return Return the face detection threshold
+    '''
+
+    def get_detect_thres(self):
+    '''
+      @brief Get the x-range for face detection
+      @n Get the threshold for detecting the X coordinate (0-100). Default is 60%.
+      @return Return the x-range for face detection
+    '''
+
+    def get_gesture_detect_thres(self):
+    '''
+      @brief Get the gesture detection threshold
+      @n Get the threshold for gesture detection (0-100). Default is 60%.
+      @return Return the threshold for gesture detection
+    '''
+
+    def set_addr(self, addr):
     '''
       @brief Set the device address
       @param addr Address to set
     '''
-    def set_addr(self, addr):
-
 ```
 
 ## Compatibility
@@ -134,11 +163,11 @@ Download the DFRobot_GestureFaceDetection file to the Raspberry Pi file director
 | Python3 |  √   |        |        |      |
 ## History 
 
-- 2024/08/01 - Version 1.0.0 released.
+- 2025/03/17 - Version 1.0.0 released.
 
 ## Credits
 
-Written by fengli(li.feng@dfrobot.com), 2024.8.01 (Welcome to our [website](https://www.dfrobot.com/))
+Written by thdyyl(yuanlong.yu@dfrobot.com), 2025.03.17 (Welcome to our [website](https://www.dfrobot.com/))
 
 
 

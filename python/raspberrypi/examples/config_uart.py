@@ -1,23 +1,21 @@
 '''
-  @file config.py
+  @file config_uart.py
   @brief Configure sensor parameters
   @details  This code configures the sensor's address and serial communication parameters.
-  @copyright   Copyright (c) 2024 DFRobot Co.Ltd (http://www.dfrobot.com)
+  @copyright   Copyright (c) 2025 DFRobot Co.Ltd (http://www.dfrobot.com)
   @license     The MIT license (MIT)
-  @author [fengli](li.feng@dfrobot.com)
+  @author [thdyyl](yuanlong.yu@dfrobot.com)
   @version  V1.0
-  @date  2024-08-09
+  @date  2025-03-31
   @https://github.com/DFRobot/DFRobot_GestureFaceDetection
 '''
 
 # -*- coding: utf-8 -*-
-
-import smbus
 import time
 import serial
 import sys
 sys.path.append("../")
-from python.raspberrypi.DFRobot_GestureFaceDetection import DFRobot_GestureFaceDetection_I2C, DFRobot_GestureFaceDetection_UART
+from DFRobot_GestureFaceDetection import DFRobot_GestureFaceDetection_I2C, DFRobot_GestureFaceDetection_UART
 
 # Define macros (simulated using variables)
 USE_I2C = False  # Set to True to use I2C; set to False to use UART
@@ -26,6 +24,8 @@ USE_I2C = False  # Set to True to use I2C; set to False to use UART
 DEVICE_ID = 0x72
 UART_BAUD_RATE = 9600
 
+# Set a new device address
+NEW_DEVICE_ID = 0x72
 # Choose between I2C or UART based on the macro
 if USE_I2C:
     # Using I2C interface
@@ -41,29 +41,26 @@ def setup():
     This function initializes the sensor and configures the communication settings
     based on the selected interface (I2C or UART).
     """
+    # Wait for the sensor to start.
+    time.sleep(5)
+    while gfd.begin() == False:
+        print("Communication with device failed, please check connection")
+        time.sleep(1)
+
     if USE_I2C:
         # I2C does not require additional initialization
         print("I2C setup complete.")
     else:
         # Configure UART communication
-        gfd.config_uart(baud=UART_BAUD_RATE, parity=0, stop_bit=2)
-        print("UART configured.")
-    
-    # Set the device address
-    gfd.set_addr(DEVICE_ID)
-    print("Device address set to: {}".format(DEVICE_ID))
-
-def loop():
-    """
-    @brief Main loop function.
-    
-    This function runs in a loop, simulating a delay similar to Arduino's delay function.
-    """
-    while True:
-        time.sleep(1)  # Simulate delay similar to Arduino's delay function
-
+        if gfd.config_uart(baud=gfd.EBAUD_115200, parity=gfd.UART_CFG_PARITY_NONE, stop_bit=gfd.UART_CFG_STOP_BITS_1) == gfd.SUCCESS:
+            print("UART configured success.")
+        else:
+            print("UART configuration failed.")
+        # Set the device address
+        if gfd.set_addr(NEW_DEVICE_ID):
+            print("Device address set to: 0x{:x}".format(NEW_DEVICE_ID))
+        else:
+            print("Failed to set device address.")
 # Execute the setup function
 setup()
 
-# Execute the loop function
-loop()
