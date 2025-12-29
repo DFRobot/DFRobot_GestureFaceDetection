@@ -16,6 +16,7 @@ SEN0626: GestureFaceDetection Sensor 手势传感器
 * [安装](#安装)
 * [方法](#方法)
 * [兼容性](#兼容性)
+* [社区项目与集成](#社区项目与集成)
 * [历史](#历史)
 * [贡献者](#贡献者)
 
@@ -220,14 +221,22 @@ Micro:bit        |      √       |              |             |
 FireBeetle-M0        |      √       |              |             | 
 Raspberry Pi      |      √       |              |             | 
 
+## 社区项目与集成
+
+GestureFaceDetection 传感器拥有一个活跃的社区。以下是一些出色的第三方集成项目，扩展了传感器的功能：
+
+| 项目名称 | 描述 | 语言/平台 | 维护者 | 链接 |
+| :--- | :--- | :--- | :--- | :--- |
+| **ROS2 手势传感器节点** | 一个 ROS2 封装节点，将本传感器集成到 Robot Operating System 2 生态中，实现基于手势的机器人控制。 | Python, ROS2 (Humble/Iron) | [slgrobotics](https://github.com/slgrobotics) | [GitHub 仓库](https://github.com/slgrobotics/face_gesture_sensor) |
+
+**免责声明**：社区项目由其各自的作者维护，并非由 DFRobot 官方提供支持。我们感谢所有贡献者的出色工作！
+
 ## 历史
 
-- Date 2025-03-17
+- Date 2025-12-29
 - Version V1.0
 
 
 ## 贡献者
 
 Written by thdyyl(yuanlong.yu@dfrobot.com), 2025.03.17 (Welcome to our [website](https://www.dfrobot.com/))
-
-## History

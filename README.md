@@ -16,6 +16,7 @@ GestureFaceDetection is a sensor capable of tracking human head and shoulders an
 * [Installation](#installation)
 * [Methods](#methods)
 * [Compatibility](#compatibility)
+* [Community Projects & Integrations](#Community Projects & Integrations)
 * [History](#history)
 * [Credits](#credits)
 
@@ -223,10 +224,18 @@ Micro:bit        |      √       |              |             |
 FireBeetle-M0        |      √       |              |             | 
 Raspberry Pi      |      √       |              |             | 
 
+## Community Projects & Integrations
+
+The GestureFaceDetection sensor is powered by a vibrant community. Here are some notable third-party integrations that extend its functionality:
+
+| Project Name | Description | Language/Platform | Maintainer | Link |
+| :--- | :--- | :--- | :--- | :--- |
+| **ROS2 Node for GestureFaceDetection** | A ROS2 wrapper node that integrates the sensor into the Robot Operating System 2 ecosystem, enabling gesture-based robot control. | Python, ROS2 (Humble/Iron) | [slgrobotics](https://github.com/slgrobotics) | [GitHub Repository](https://github.com/slgrobotics/face_gesture_sensor) |
+
+**Disclaimer**: Community projects are maintained by their respective authors and are not officially supported by DFRobot. We thank all contributors for their amazing work!
 ## History
 
-- Date 2025-03-17
+- Date 2025-12-29
 - Version V1.0
 ## Credits
 Written by thdyyl(yuanlong.yu@dfrobot.com), 2025.03.17 (Welcome to our [website](https://www.dfrobot.com/))
-## History
