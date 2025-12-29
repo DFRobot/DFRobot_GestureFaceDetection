@@ -16,7 +16,7 @@ GestureFaceDetection is a sensor capable of tracking human head and shoulders an
 * [Installation](#installation)
 * [Methods](#methods)
 * [Compatibility](#compatibility)
-* [Community Projects & Integrations](#Community Projects & Integrations)
+* [Community](#Community)
 * [History](#history)
 * [Credits](#credits)
 
@@ -224,7 +224,7 @@ Micro:bit        |      √       |              |             |
 FireBeetle-M0        |      √       |              |             | 
 Raspberry Pi      |      √       |              |             | 
 
-## Community Projects & Integrations
+## Community
 
 The GestureFaceDetection sensor is powered by a vibrant community. Here are some notable third-party integrations that extend its functionality:
 
